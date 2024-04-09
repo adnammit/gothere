@@ -1,35 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { lazy } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// import { CitiesProvider } from "./contexts/CitiesContext";
+// import { AuthProvider } from "./contexts/FakeAuthContext";
+// import ProtectedRoute from "./pages/ProtectedRoute";
+
+// import CityList from "./components/CityList";
+// import CountryList from "./components/CountryList";
+// import City from "./components/City";
+// import Form from "./components/Form";
+// import SpinnerFullPage from "./components/SpinnerFullPage";
+
+// import Product from "./pages/Product";
+// import Pricing from "./pages/Pricing";
+// import Homepage from "./pages/Homepage";
+// import Login from "./pages/Login";
+// import AppLayout from "./pages/AppLayout";
+// import PageNotFound from "./pages/PageNotFound";
+
+const Home = lazy(() => import("./pages/Home"));
+// const Product = lazy(() => import("./pages/Product"));
+// const Pricing = lazy(() => import("./pages/Pricing"));
+// const Login = lazy(() => import("./pages/Login"));
+// const AppLayout = lazy(() => import("./pages/AppLayout"));
+const PageNotFound = lazy(() => import("./pages/PageNotFound"));
+
+// dist/assets/index-59fcab9b.css   30.56 kB │ gzip:   5.14 kB
+// dist/assets/index-f7c12d89.js   572.44 kB │ gzip: 151.29 kB
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    // <AuthProvider>
+      // <CitiesProvider>
+        <BrowserRouter>
+          {/* <Suspense fallback={<SpinnerFullPage />}> */}
+            <Routes>
+              <Route index element={<Home />} />
+              {/* <Route path="product" element={<Product />} />
+              <Route path="pricing" element={<Pricing />} />
+              <Route path="login" element={<Login />} />
+              <Route
+                path="app"
+                element={
+                  <ProtectedRoute>
+                    <AppLayout />
+                  </ProtectedRoute>
+                }
+              >
+                <Route index element={<Navigate replace to="cities" />} />
+                <Route path="cities" element={<CityList />} />
+                <Route path="cities/:id" element={<City />} />
+                <Route path="countries" element={<CountryList />} />
+                <Route path="form" element={<Form />} />
+              </Route> */}
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          {/* </Suspense> */}
+        </BrowserRouter>
+      // </CitiesProvider>
+    // </AuthProvider>
+  );
 }
 
-export default App
+export default App;

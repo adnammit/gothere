@@ -17,6 +17,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 // import AppLayout from "./pages/AppLayout";
 import PageNotFound from "./pages/PageNotFound";
+import Navigation from "./components/Navigation";
 
 // const Home = lazy(() => import("./pages/Home"));
 // const Product = lazy(() => import("./pages/Product"));
@@ -30,16 +31,18 @@ import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
-    // <AuthProvider>
-      // <CitiesProvider>
-        <BrowserRouter>
-          {/* <Suspense fallback={<SpinnerFullPage />}> */}
-            <Routes>
-              <Route index element={<Home />} />
-              <Route path="product" element={<Product />} />
-              <Route path="pricing" element={<Pricing />} />
-              <Route path="login" element={<Login />} />
-              {/* <Route
+    <>
+      {/* <AuthProvider>
+       <CitiesProvider> */}
+      <BrowserRouter>
+        <Navigation />
+        {/* <Suspense fallback={<SpinnerFullPage />}> */}
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="product" element={<Product />} />
+          <Route path="pricing" element={<Pricing />} />
+          <Route path="login" element={<Login />} />
+          {/* <Route
                 path="app"
                 element={
                   <ProtectedRoute>
@@ -53,12 +56,13 @@ function App() {
                 <Route path="countries" element={<CountryList />} />
                 <Route path="form" element={<Form />} />
               </Route> */}
-              <Route path="*" element={<PageNotFound />} />
-            </Routes>
-          {/* </Suspense> */}
-        </BrowserRouter>
-      // </CitiesProvider>
-    // </AuthProvider>
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+        {/* </Suspense> */}
+      </BrowserRouter>
+      {/* </CitiesProvider>
+     </AuthProvider> */}
+    </>
   );
 }
 
